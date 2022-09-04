@@ -28,3 +28,25 @@ jobs:
       - name: Run tests
         working-directory: ./library_front
         run: npm test
+  test-backend:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      working-directory: ./library_back
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v2
+      - run: pip install -r requirements.txt
+      - run: pytest .
+  lint:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install project
+        working-directory: ./library_front
+        run: npm install
+      - name: Run lint
+        working-directory: ./library_front
+        run: npm run lint
+

@@ -19,6 +19,7 @@
   },
   "scripts": {
     "start-prod": "serve -s ./build/",
+    "lint": "npx eslint src/**/*.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
