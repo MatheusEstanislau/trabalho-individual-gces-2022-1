@@ -16,7 +16,7 @@ jobs:
       - name: build
         working-directory: .
         run: docker-compose up -d
-  test:
+  test-frontend:
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -32,11 +32,16 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      working-directory: ./library_back
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v2
-      - run: pip install -r requirements.txt
-      - run: pytest .
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+      - name: Install dependencies
+        working-directory: ./library_back
+        run: pip install -r requirements.txt
+      - name: Run tests
+        working-directory: ./library_back
+        run: python manage.py test --pattern="tests.py"
   lint:
     needs: build
     runs-on: ubuntu-latest
