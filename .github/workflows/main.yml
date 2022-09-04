@@ -50,7 +50,13 @@ jobs:
       - name: Install dependencies
         working-directory: ./library_back
         run: pip install -r requirements.txt
-      - name: Run tests
+      - name: Run Make migrations
+        working-directory: ./library_back
+        run: python manage.py makemigrations
+      - name: Run migrations
+        working-directory: ./library_back
+        run: python manage.py migrate
+      - name: Run migrations
         working-directory: ./library_back
         run: python manage.py test --pattern="tests.py"
         env:
