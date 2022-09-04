@@ -29,6 +29,17 @@ jobs:
         working-directory: ./library_front
         run: npm test
   test-backend:
+    services:
+      db:
+        image: postgres
+        env:
+          POSTGRES_DB: library_db
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+          POSTGRES_HOST: localhost
+          POSTGRES_PORT: 5432
+        ports:
+          - 5432:5432
     needs: build
     runs-on: ubuntu-latest
     steps:
