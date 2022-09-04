@@ -52,10 +52,22 @@ jobs:
         run: pip install -r requirements.txt
       - name: Run Make migrations
         working-directory: ./library_back
+        env:
+          POSTGRES_DB: library_db
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+          POSTGRES_HOST: localhost
+          POSTGRES_PORT: 5432
         run: python manage.py makemigrations
       - name: Run migrations
         working-directory: ./library_back
         run: python manage.py migrate
+        env:
+          POSTGRES_DB: library_db
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+          POSTGRES_HOST: localhost
+          POSTGRES_PORT: 5432
       - name: Run migrations
         working-directory: ./library_back
         run: python manage.py test --pattern="tests.py"
