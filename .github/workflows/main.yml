@@ -53,6 +53,12 @@ jobs:
       - name: Run tests
         working-directory: ./library_back
         run: python manage.py test --pattern="tests.py"
+        env:
+          POSTGRES_DB: library_db
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+          POSTGRES_HOST: localhost
+          POSTGRES_PORT: 5432
   lint:
     needs: build
     runs-on: ubuntu-latest
