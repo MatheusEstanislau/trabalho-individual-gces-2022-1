@@ -1,6 +1,11 @@
 FROM python:3
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
+ENV POSTGRES_DB=library_db
+ENV POSTGRES_USER=postgres
+ENV POSTGRES_PASSWORD=password
+ENV POSTGRES_HOST=db
+ENV POSTGRES_PORT=5432
 WORKDIR /code
 COPY ./requirements.txt /code/
 RUN pip install -r requirements.txt
