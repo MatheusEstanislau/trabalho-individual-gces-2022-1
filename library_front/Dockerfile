@@ -1,7 +1,6 @@
 FROM node:lts-alpine
 WORKDIR /frontend
-COPY package*.json ./
-RUN npm install
 COPY . .
-EXPOSE 3000
-CMD ["npm", "start"]
+RUN npm install
+RUN npm run build
+RUN npm install -g serve
